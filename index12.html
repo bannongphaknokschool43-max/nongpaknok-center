@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ประวัติโรงเรียนบ้านหนองผักหนอก</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* 🔹 BODY (แก้ให้ใช้ Flex) */
+    body {
+      margin: 0;
+      font-family: 'Kanit', sans-serif;
+      background: #fdfdfd;
+      color: #333;
+      line-height: 1.8;
+
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+/* 🔹 กล่องแผนภูมิ */
+.chart-box{
+  margin-top:40px;
+  padding:25px;
+  border-radius:12px;
+  background:#fafafa;
+  box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* 🔹 Bar Chart */
+.bar-chart{
+  margin-top:20px;
+}
+
+.bar{
+  margin-bottom:15px;
+}
+
+.bar span{
+  display:inline-block;
+  width:50px;
+  font-weight:600;
+}
+
+.bar-fill{
+  display:inline-block;
+  height:28px;
+  line-height:28px;
+  color:#000;
+  font-weight:600;
+  padding-left:10px;
+  border-radius:6px;
+}
+
+/* กำหนดความยาวแท่ง */
+.p1{ width:100%; background:#ffcc00; }
+.p2{ width:100%; background:#ffb703; }
+.p3{ width:100%; background:#ffd166; }
+.p4{ width:100%; background:#f4a261; }
+.p5{ width:100%; background:#e76f51; }
+.p6{ width:100%; background:#d62828; }
+
+/* 🔹 คำอธิบาย */
+.legend{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  font-weight:600;
+}
+
+.legend .male{ color:#3a86ff; }
+.legend .female{ color:#ff006e; }
+
+
+    /* 🔹 Navbar */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(90deg, #000, #222);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 40px;
+      padding: 10px 0;
+      margin: 0;
+    }
+
+    .menu > li {
+      position: relative;
+    }
+
+    .menu > li > a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 10px 0;
+      display: block;
+    }
+
+    .menu > li > a:hover {
+      color: gold;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #000;
+      border-radius: 8px;
+      min-width: 180px;
+    }
+
+    .submenu a {
+      display: block;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .submenu a:hover {
+      background: gold;
+      color: #000;
+    }
+
+    .menu li:hover .submenu {
+      display: block;
+    }
+
+    /* 🔹 Container (สำคัญ: flex:1) */
+    .container {
+      max-width: 1000px;
+      margin: 100px auto 50px;
+      padding: 30px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+      text-align: center;
+
+      flex: 1; /* ⭐ ดัน footer ลงล่าง */
+    }
+
+    h2 {
+      font-size: 30px;
+      margin-bottom: 25px;
+    }
+    .logo{ /* กล่องโลโก้ */
+  position:absolute; /* กำหนดตำแหน่งอิสระ */
+  left:30px; /* เว้นจากด้านซ้าย */
+  display:flex; /* จัดเรียงแนวนอน */
+  align-items:center; /* จัดกึ่งกลางแนวตั้ง */
+  gap:10px; /* ระยะห่างระหว่างรูปกับข้อความ */
+  color:gold; /* สีตัวอักษร */
+  font-weight:600; /* ตัวอักษรหนา */
+}
+
+/* รูปโลโก้ */
+.logo img{ /* รูปโลโก้ */
+  width:48px; /* ความกว้าง */
+  height:48px; /* ความสูง */
+  border-radius:50%; /* ทำให้รูปเป็นวงกลม */
+  border:2px solid gold; /* เส้นขอบสีทอง */
+  background:#fff; /* พื้นหลังสีขาว */
+}
+
+    .content {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .content img {
+      width: 380px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .content p {
+      flex: 1;
+      font-size: 17px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 25px;
+      background: linear-gradient(90deg, gold, #ff66aa);
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    /* 🔹 Footer (เต็มขอบ + ล่างสุด) */
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 20px 10px;
+      background: #111;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    footer span {
+      color: gold;
+    }
+
+    /* 🔹 Responsive */
+    @media (max-width: 900px) {
+      .content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .content img {
+        width: 100%;
+      }
+
+      .content p {
+        text-align: justify;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+<!-- 🔹 Navbar -->
+<nav> <!-- แถบเมนู -->
+  <div class="logo"> 
+    <img src="pic/logo.png" alt="โลโก้"> 
+    โรงเรียนบ้านหนองผักหนอก 
+  </div>
+
+  <ul class="menu">
+    <li>
+      <a href="#">หน้าแรก ▾</a>
+      <div class="submenu">
+      <a href="index2.html">ประวัติโรงเรียน</a>
+      <a href="index3.html">วิสัยทัศน์ / สีโรงเรียน</a>
+      <a href="index4.html">ผังโรงเรียน</a>
+      <a href="index5.html">เพลงมาร์ช</a>
+      <a href="index6.html">ผังองค์กร</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">บุคลากร ▾</a>
+      <div class="submenu">
+      <a href="index8.html">ฝ่ายบริหาร</a>
+      <a href="index9.html">ครูผู้สอน</a>
+      <a href="index10.html">เจ้าหน้าที่</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">ข้อมูลนักเรียน ▾</a>
+      <div class="submenu">
+      <a href="index11.html">อนุบาล</a>
+      <a href="index12.html">ประถม</a>
+      <a href="index13.html">มัธยม</a>
+      </div>
+    </li>
+    
+    <li>
+      <a href="#">ผลงานความภาคภูมิใจ ▾</a>
+      <div class="submenu">
+        <a href="index14.html">ผลงานนักเรียน</a>
+        <a href="#">ผลงานครู</a>
+        <a href="#">รางวัล</a>
+      </div>
+    </li>
+     <li><a href="#"> Dowload ▾</a>
+      <div class="submenu">
+         <a href="index15.html">ตารางเรียน</a>
+        <a href="">ตราโรงเรียนบ้านหนองผักหนอก</a>
+      </div>
+    </li>
+    <li><a href="#">ติดต่อ</a></li>
+  </ul>
+</nav>
+
+  
+
+<div class="container">
+  <h2>ข้อมูลนักเรียนระดับชั้นประถมศึกษา</h2>
+
+  <!-- 🔹 แผนภูมิแท่ง -->
+  <div class="chart-box">
+    <h3>จำนวนนักเรียนแยกตามระดับชั้น</h3>
+
+    <div class="bar-chart">
+      <div class="bar">
+        <span>ป.1</span>
+        <div class="bar-fill p1">20</div>  <!-- 🔹 แก้ไขตัวเลขตรงนี้ -->
+      </div>
+      <div class="bar">
+        <span>ป.2</span>
+        <div class="bar-fill p2">20</div> <!-- 🔹 แก้ไขตัวเลขตรงนี้ -->
+      </div>
+      <div class="bar">
+        <span>ป.3</span>
+        <div class="bar-fill p3">23</div> <!-- 🔹 แก้ไขตัวเลขตรงนี้ -->
+      </div>
+      <div class="bar">
+        <span>ป.4</span>
+        <div class="bar-fill p4">29</div> <!-- 🔹 แก้ไขตัวเลขตรงนี้ -->
+      </div>
+      <div class="bar">
+        <span>ป.5</span>
+        <div class="bar-fill p5">27</div> <!-- 🔹 แก้ไขตัวเลขตรงนี้ -->
+      </div>
+      <div class="bar">
+        <span>ป.6</span>
+        <div class="bar-fill p6">30</div> <!-- 🔹 แก้ไขตัวเลขตรงนี้ -->
+      </div>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">⬅ กลับไปหน้าแรก</a>
+</div>
+
+<!-- 🔹 Footer -->
+<footer>
+© 2025 <span>โรงเรียนบ้านหนองผักหนอก</span> | พัฒนาโดยนักเรียน ปวส. วิทยาลัยเทคนิคมวกเหล็ก
+</footer>
+
+</body>
+
+<script>
+  // ดึงแท่งทั้งหมด
+  const bars = document.querySelectorAll('.bar-fill');
+
+  // เก็บค่าจำนวนนักเรียน
+  let values = [];
+  bars.forEach(bar => {
+    values.push(parseInt(bar.textContent.trim()));
+  });
+
+  // คำนวณผลรวม
+  const total = values.reduce((sum, v) => sum + v, 0);
+
+  // คำนวณเปอร์เซ็นต์ และปรับแท่ง
+  bars.forEach((bar, index) => {
+    const percent = ((values[index] / total) * 100).toFixed(1);
+    bar.style.width = percent + '%';
+    bar.textContent = values[index] + ' คน (' + percent + '%)';
+  });
+
+  // ทำให้แท่งกราฟทุกชั้นยาวเท่ากัน
+  const equalBars = document.querySelectorAll('.bar-fill');
+
+  equalBars.forEach(bar => {
+    bar.style.width = '100%'; // ทุกแท่งเท่ากัน
+  });
+</script>
+
+</html>

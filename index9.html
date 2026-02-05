@@ -1,0 +1,411 @@
+<!DOCTYPE html> <!-- ประกาศว่าเป็นเอกสาร HTML5 -->
+<html lang="th"> <!-- กำหนดภาษาเว็บไซต์เป็นภาษาไทย -->
+<head> <!-- ส่วนหัวของเอกสาร -->
+<meta charset="UTF-8"> <!-- รองรับการแสดงผลภาษาไทย -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ทำให้หน้าเว็บแสดงผลเหมาะสมกับอุปกรณ์มือถือ -->
+
+<title>ผังบุคลากรโรงเรียน</title> <!-- ชื่อหน้าเว็บที่แสดงบนแท็บ -->
+
+<!-- เรียกใช้ฟอนต์ Kanit จาก Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style> /* เริ่มเขียน CSS */
+
+/* ================= BASE ================= */
+/* กำหนดค่าพื้นฐานของหน้าเว็บ */
+body{ /* กำหนดรูปแบบให้กับ body */
+  margin:0; /* ลบระยะขอบรอบหน้าเว็บ */
+  font-family:'Kanit',sans-serif; /* ใช้ฟอนต์ Kanit */
+  background:#f5f5f5; /* สีพื้นหลังหน้าเว็บ */
+  color:#333; /* สีตัวอักษร */
+}
+
+/* ================= NAVBAR ================= */
+/* แถบเมนูด้านบน */
+nav{ /* ส่วนเมนูนำทาง */
+  background:linear-gradient(90deg,#000,#222); /* พื้นหลังไล่ระดับสี */
+  padding:10px 30px; /* ระยะห่างด้านในเมนู */
+  position:sticky; /* ให้เมนูติดด้านบนขณะเลื่อน */
+  top:0; /* ติดด้านบนสุด */
+  z-index:1000; /* แสดงอยู่ชั้นบนสุด */
+  display:flex; /* จัดเรียงแบบ flex */
+  justify-content:center; /* จัดกึ่งกลางแนวนอน */
+  align-items:center; /* จัดกึ่งกลางแนวตั้ง */
+}
+
+/* โลโก้โรงเรียน */
+.logo{ /* กล่องโลโก้ */
+  position:absolute; /* กำหนดตำแหน่งอิสระ */
+  left:30px; /* เว้นจากด้านซ้าย */
+  display:flex; /* จัดเรียงแนวนอน */
+  align-items:center; /* จัดกึ่งกลางแนวตั้ง */
+  gap:10px; /* ระยะห่างระหว่างรูปกับข้อความ */
+  color:gold; /* สีตัวอักษร */
+  font-weight:600; /* ตัวอักษรหนา */
+}
+
+/* รูปโลโก้ */
+.logo img{ /* รูปโลโก้ */
+  width:48px; /* ความกว้าง */
+  height:48px; /* ความสูง */
+  border-radius:50%; /* ทำให้รูปเป็นวงกลม */
+  border:2px solid gold; /* เส้นขอบสีทอง */
+  background:#fff; /* พื้นหลังสีขาว */
+}
+
+/* ================= MENU ================= */
+/* เมนูหลัก */
+.menu{ /* รายการเมนู */
+  list-style:none; /* ลบจุดหน้ารายการ */
+  display:flex; /* เรียงเมนูแนวนอน */
+  gap:40px; /* ระยะห่างระหว่างเมนู */
+  margin:0; /* ลบ margin */
+  padding:0; /* ลบ padding */
+}
+
+.menu li{ /* แต่ละเมนู */
+  position:relative; /* ใช้สำหรับแสดง submenu */
+}
+
+.menu a{ /* ลิงก์เมนู */
+  color:#fff; /* สีตัวอักษร */
+  text-decoration:none; /* ไม่ขีดเส้นใต้ */
+  font-weight:600; /* ตัวอักษรหนา */
+  padding:10px 0; /* ระยะห่างบนล่าง */
+  display:block; /* คลิกได้ทั้งพื้นที่ */
+}
+
+/* เปลี่ยนสีเมื่อเอาเมาส์ชี้ */
+.menu a:hover{
+  color:gold; /* เปลี่ยนเป็นสีทอง */
+}
+
+/* ================= SUBMENU ================= */
+/* เมนูย่อย */
+.submenu{ /* กล่องเมนูย่อย */
+  display:none; /* ซ่อนเมนูย่อย */
+  position:absolute; /* กำหนดตำแหน่ง */
+  top:100%; /* แสดงใต้เมนูหลัก */
+  left:0; /* ชิดซ้าย */
+  background:#111; /* สีพื้นหลัง */
+  border-radius:8px; /* มุมโค้ง */
+  min-width:220px; /* ความกว้างขั้นต่ำ */
+  padding:8px 0; /* ระยะห่างด้านใน */
+}
+
+.submenu li{ /* รายการเมนูย่อย */
+  list-style:none; /* ลบจุด */
+}
+
+.submenu a{ /* ลิงก์เมนูย่อย */
+  padding:10px 18px; /* ระยะห่าง */
+  color:#eee; /* สีตัวอักษร */
+}
+
+/* เอฟเฟกต์ hover เมนูย่อย */
+.submenu a:hover{
+  background:gold; /* พื้นหลังสีทอง */
+  color:#000; /* ตัวอักษรสีดำ */
+}
+
+/* แสดง submenu เมื่อชี้เมาส์ */
+.menu li:hover .submenu{
+  display:block; /* แสดงเมนูย่อย */
+}
+
+/* ================= CONTAINER ================= */
+/* กล่องเนื้อหาหลัก */
+.container{
+  max-width:1100px; /* ความกว้างสูงสุด */
+  margin:80px auto; /* จัดกึ่งกลาง */
+  background:#fff; /* สีพื้นหลัง */
+  padding:40px 30px 50px; /* ระยะห่างด้านใน */
+  border-radius:16px; /* มุมโค้ง */
+  box-shadow:0 6px 25px rgba(0,0,0,.1); /* เงา */
+  text-align:center; /* จัดข้อความกึ่งกลาง */
+}
+
+/* หัวข้อ */
+h2{
+  font-size:32px; /* ขนาดตัวอักษร */
+  margin-bottom:50px; /* ระยะห่างด้านล่าง */
+}
+
+/* เส้นตกแต่งใต้หัวข้อ */
+h2::after{
+  content:""; /* สร้างองค์ประกอบเสริม */
+  display:block; /* แสดงเป็นบล็อก */
+  width:80px; /* ความกว้าง */
+  height:4px; /* ความสูง */
+  background:linear-gradient(90deg,#ff66aa,gold); /* สีไล่ระดับ */
+  margin:12px auto 0; /* จัดกึ่งกลาง */
+  border-radius:4px; /* มุมโค้ง */
+}
+
+/* ================= ORG CHART ================= */
+/* ผังโครงสร้างบุคลากร */
+.org-chart{
+  display:flex; /* ใช้ flex */
+  flex-direction:column; /* เรียงแนวตั้ง */
+  align-items:center; /* จัดกึ่งกลาง */
+  gap:40px; /* ระยะห่าง */
+}
+
+/* ระดับตำแหน่ง */
+.level{
+  display:flex; /* เรียงแนวนอน */
+  justify-content:center; /* จัดกึ่งกลาง */
+  flex-wrap:wrap; /* ขึ้นบรรทัดใหม่ */
+  gap:30px; /* ระยะห่าง */
+}
+
+/* เส้นเชื่อม */
+.line{
+  width:2px; /* ความกว้าง */
+  height:40px; /* ความสูง */
+  background:#ccc; /* สีเส้น */
+}
+
+/* ================= PERSON CARD ================= */
+/* การ์ดบุคลากร */
+.person{
+  width:210px; /* ความกว้างการ์ด */
+  background:linear-gradient(180deg,#fff,#fff6f8); /* สีพื้นหลัง */
+  border:1px solid #f1d2f3; /* เส้นขอบ */
+  border-radius:14px; /* มุมโค้ง */
+  padding:20px 15px; /* ระยะห่างด้านใน */
+  box-shadow:0 4px 15px rgba(0,0,0,.08); /* เงา */
+  transition:.3s; /* ความลื่นไหล */
+}
+
+/* เอฟเฟกต์ hover การ์ด */
+.person:hover{
+  transform:translateY(-6px); /* ยกการ์ดขึ้น */
+  box-shadow:0 10px 25px rgba(255,105,180,.35); /* เงาเพิ่ม */
+}
+
+/* รูปบุคลากร */
+.person img{
+  width:150px; /* ความกว้าง */
+  height:150px; /* ความสูง */
+  border-radius:50%; /* วงกลม */
+  object-fit:cover; /* ครอบรูป */
+  border:3px solid gold; /* ขอบสีทอง */
+  margin-bottom:12px; /* ระยะห่างด้านล่าง */
+}
+
+/* ชื่อบุคลากร */
+.person h3{
+  font-size:18px; /* ขนาดตัวอักษร */
+  margin:6px 0; /* ระยะห่าง */
+}
+
+/* ตำแหน่ง */
+.person p{
+  font-size:14px; /* ขนาดตัวอักษร */
+  color:#666; /* สี */
+  margin:2px 0; /* ระยะห่าง */
+}
+
+/* ================= BACK BUTTON ================= */
+/* ปุ่มกลับหน้าแรก */
+.back-btn{
+  margin-top:50px; /* ระยะห่างด้านบน */
+  display:inline-flex; /* จัดเรียงแนวนอน */
+  align-items:center; /* จัดกึ่งกลาง */
+  gap:10px; /* ระยะห่าง */
+  padding:12px 30px; /* ระยะห่างด้านใน */
+  background:linear-gradient(135deg,#ff66aa,#ffcc33); /* สีไล่ระดับ */
+  color:#fff; /* สีตัวอักษร */
+  font-weight:600; /* ตัวอักษรหนา */
+  border-radius:40px; /* มุมโค้ง */
+  text-decoration:none; /* ไม่ขีดเส้น */
+  transition:.3s; /* ความลื่นไหล */
+}
+
+.back-btn:hover{
+  transform:translateY(-4px); /* ยกปุ่ม */
+  box-shadow:0 8px 25px rgba(255,105,180,.5); /* เงา */
+}
+
+/* ================= FOOTER ================= */
+/* ส่วนท้ายเว็บ */
+footer{
+  margin-top:80px; /* ระยะห่าง */
+  background:#111; /* สีพื้นหลัง */
+  color:#ccc; /* สีตัวอักษร */
+  text-align:center; /* จัดกึ่งกลาง */
+  padding:18px; /* ระยะห่าง */
+}
+
+footer span{
+  color:gold; /* สีทอง */
+}
+
+/* ================= RESPONSIVE ================= */
+/* รองรับหน้าจอมือถือ */
+@media (max-width:768px){
+  .logo{
+    position:static; /* ยกเลิก absolute */
+    margin-bottom:10px; /* ระยะห่าง */
+  }
+  nav{
+    flex-direction:column; /* เรียงแนวตั้ง */
+  }
+  .menu{
+    gap:25px; /* ลดระยะห่าง */
+  }
+}
+</style> <!-- จบ CSS -->
+</head>
+
+<body> <!-- เริ่มแสดงผลหน้าเว็บ -->
+
+<!-- ===== เมนูนำทาง ===== -->
+<nav> <!-- แถบเมนู -->
+  <div class="logo"> 
+    <img src="pic/logo.png" alt="โลโก้"> 
+    โรงเรียนบ้านหนองผักหนอก 
+  </div>
+
+  <ul class="menu"> 
+    <li>
+      <a href="#">หน้าแรก ▾</a>
+      <div class="submenu">
+      <a href="index2.html">ประวัติโรงเรียน</a>
+      <a href="index3.html">วิสัยทัศน์ / สีโรงเรียน</a>
+      <a href="index4.html">ผังโรงเรียน</a>
+      <a href="index5.html">เพลงมาร์ช</a>
+      <a href="index6.html">ผังองค์กร</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">บุคลากร ▾</a>
+      <ul class="submenu">
+      <a href="index8.html">ฝ่ายบริหาร</a>
+      <a href="index9.html">ครูผู้สอน</a>
+      <a href="index10.html">เจ้าหน้าที่</a>
+      </ul>
+    </li>
+
+        <li>
+      <a href="#">ข้อมูลนักเรียน ▾</a>
+      <div class="submenu">
+      <a href="index11.html">อนุบาล</a>
+      <a href="index12.html">ประถม</a>
+      <a href="index13.html">มัธยม</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">ผลงานความภาคภูมิใจ ▾</a>
+      <div class="submenu">
+        <a href="index14.html">ผลงานนักเรียน</a>
+        <a href="#">ผลงานครู</a>
+        <a href="#">รางวัล</a>
+      </div>
+    </li>
+
+   <li>
+      <a href="#"> Dowload ▾</a>
+      <div class="submenu">
+        <a href="index15.html">ตารางเรียน</a>
+        <a href="">ตราโรงเรียนบ้านหนองผักหนอก</a>
+      </div>
+    </li>
+    <li><a href="#">ติดต่อ</a></li>
+  </ul>
+</nav>
+
+
+<!-- ===== เนื้อหา ===== -->
+<div class="container"> <!-- กล่องเนื้อหา -->
+  <h2>ผังบุคลากรโรงเรียน</h2> <!-- หัวข้อ -->
+
+  <div class="org-chart"> <!-- ผังองค์กร -->
+
+    <!-- ระดับผู้อำนวยการ -->
+    <div class="level">
+      <div class="person">
+        <img src="pic/ผอ.png" alt="">
+        <h3>นายสมชาย โกจินอก</h3>
+        <p>ผู้อำนวยการโรงเรียน</p>
+      </div>
+    </div>
+
+    <div class="line"></div> <!-- เส้นเชื่อมลงมายังรองผู้อำนวยการ -->
+
+    <!-- ระดับรองผู้อำนวยการ -->
+    <div class="level">
+      <div class="person">
+        <img src="pic/รอง.png" alt="">
+        <h3>นายศิราวุฒิ บุญชู</h3>
+        <p>รองผู้อำนวยการฝ่ายวิชาการ</p>
+      </div>
+
+      <div class="person">
+        <img src="" alt="">
+        <h3>นายอนันต์ มุ่งมั่น</h3>
+        <p>รองผู้อำนวยการฝ่ายบริหารทั่วไป</p>
+      </div>
+    </div>
+
+        <!-- ⭐ ครูและเจ้าหน้าที่ -->
+    <div class="level">
+      <div class="person">
+        <img src="pic/teacher1.jpg" alt="">
+        <h3>นางสุมาลี แสนดี</h3>
+        <p>ครูประจำชั้น ป.1</p>
+      </div>
+
+      <div class="person">
+        <img src="pic/teacher2.jpg" alt="">
+        <h3>นายประสิทธิ์ เก่งกล้า</h3>
+        <p>ครูประจำชั้น ป.2</p>
+      </div>
+
+      <div class="person">
+        <img src="pic/teacher3.jpg" alt="">
+        <h3>นางสาวปวีณา ตั้งใจ</h3>
+        <p>ครูประจำชั้น ป.3</p>
+      </div>
+
+      <div class="person">
+        <img src="pic/teacher4.jpg" alt="">
+        <h3>นายกิตติพงษ์ ยิ้มแย้ม</h3>
+        <p>ครูวิทยาศาสตร์</p>
+      </div>
+    </div>
+
+    <div class="level">
+      <div class="person">
+        <img src="pic/teacher6.jpg" alt="">
+        <h3>นายอาทิตย์ ขยันดี</h3>
+        <p>ครูคณิตศาสตร์</p>
+      </div>
+
+      <div class="person">
+        <img src="pic/teacher7.jpg" alt="">
+        <h3>นางสาววารี สุขสด</h3>
+        <p>ครูสังคมศึกษา</p>
+      </div>
+
+      <div class="person">
+        <img src="pic/teacher8.jpg" alt="">
+        <h3>นายธนบดี ใจดี</h3>
+        <p>เจ้าหน้าที่ธุรการ</p>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-btn">⬅ กลับหน้าแรก</a> <!-- ปุ่มกลับ -->
+  </div>
+</div>
+
+<footer>
+© 2025 <span>โรงเรียนบ้านหนองผักหนอก</span> | พัฒนาโดยนักเรียน ปวส. วิทยาลัยเทคนิคมวกเหล็ก
+</footer>
+
+</body> <!-- จบส่วนแสดงผล -->
+</html> <!-- จบเอกสาร -->

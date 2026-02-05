@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>โครงสร้างการบริหารโรงเรียน</title>
+
+<style>
+/* ===== RESET ===== */
+*{box-sizing:border-box}
+
+/* ===== BODY ===== */
+body{
+  font-family:'Kanit',sans-serif;
+  background:#eef2f7;
+  margin:0;
+  padding:120px 20px 120px;
+}
+
+/* ===== NAV ใหม่ทั้งหมด ===== */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:linear-gradient(135deg,#1e3a8a,#2563eb);
+  box-shadow:0 4px 15px rgba(0,0,0,.25);
+  z-index:1000;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin:0;
+  padding:0;
+}
+
+nav li{position:relative}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  padding:18px 22px;
+  display:block;
+  font-weight:500;
+}
+
+nav a:hover{
+  background:rgba(255,255,255,.15);
+  border-radius:8px;
+}
+
+/* ===== SUBMENU ===== */
+.submenu{
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#ffffff;
+  min-width:220px;
+  border-radius:10px;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(10px);
+  transition:.3s;
+}
+
+.submenu a{
+  color:#333;
+  padding:12px 16px;
+}
+
+.submenu a:hover{
+  background:#f1f5f9;
+}
+
+nav li:hover .submenu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+/* ===== TABLE ===== */
+table{
+  border-collapse:collapse;
+  width:100%;
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+th,td{
+  border:1px solid #cbd5e1;
+  padding:12px;
+  vertical-align:top;
+}
+
+th{
+  background:#e0e7ff;
+  text-align:center;
+  font-weight:bold;
+}
+
+.center{
+  text-align:center;
+  font-size:1.1rem;
+  background:#1e40af;
+  color:#fff;
+}
+
+.section{
+  background:#bfdbfe;
+  font-weight:bold;
+  text-align:center;
+}
+
+ol{
+  margin:0;
+  padding-left:20px;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn{
+  position:fixed;
+  bottom:30px;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(135deg,#2563eb,#1e3a8a);
+  color:#fff;
+  padding:14px 26px;
+  border-radius:50px;
+  font-size:16px;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:0 8px 25px rgba(0,0,0,.3);
+  transition:.3s;
+  z-index:2000;
+}
+
+.back-btn:hover{
+  transform:translateX(-50%) translateY(-4px) scale(1.05);
+  box-shadow:0 14px 35px rgba(37,99,235,.45);
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+<ul>
+  <li>
+    <a href="#">หน้าแรก ▾</a>
+    <div class="submenu">
+      <a href="index2.html">ประวัติโรงเรียน</a>
+      <a href="index3.html">วิสัยทัศน์ / สีโรงเรียน</a>
+      <a href="index4.html">ผังโรงเรียน</a>
+      <a href="index5.html">เพลงมาร์ช</a>
+      <a href="index6.html">ผังองค์กร</a>
+    </div>
+  </li>
+  <li><a href="โครงสร้างองค์กร.html">โครงสร้างบริหารงาน</a></li>
+  <li>
+    <a href="#">บุคลากร ▾</a>
+    <div class="submenu">
+      <a href="index8.html">ฝ่ายบริหาร</a>
+      <a href="index9.html">ครูผู้สอน</a>
+      <a href="index10.html">เจ้าหน้าที่</a>
+    </div>
+  </li>
+  <li>
+    <a href="#">ข้อมูลนักเรียน ▾</a>
+    <div class="submenu">
+      <a href="index11.html">อนุบาล</a>
+      <a href="index12.html">ประถม</a>
+      <a href="index13.html">มัธยม</a>
+    </div>
+  </li>
+
+  <li>
+      <a href="#">ผลงานความภาคภูมิใจ ▾</a>
+      <div class="submenu">
+        <a href="index14.html">ผลงานนักเรียน</a>
+        <a href="#">ผลงานครู</a>
+        <a href="#">รางวัล</a>
+      </div>
+    </li>
+     <li>
+<a href="#"> Dowload ▾</a>
+      <div class="submenu">
+        <a href="index15.html">ตารางเรียน</a>
+        <a href="">ตราโรงเรียนบ้านหนองผักหนอก</a>
+      </div>
+    </li>
+    <li><a href="#">ติดต่อ</a></li>
+  </ul>
+</nav>
+  
+
+<!-- ===== TABLE ===== -->
+<table>
+<tr>
+  <th colspan="4" class="center">
+    ผู้บริหารโรงเรียน<br>นายสมชาย โกจินอก
+  </th>
+</tr>
+<tr>
+  <th>คณะกรรมการสถานศึกษา</th>
+  <th colspan="2">กรรมการที่ปรึกษา</th>
+  <th></th>
+</tr>
+<tr>
+  <th colspan="2" class="section">
+    ที่ปรึกษาฝ่ายวิชาการและบุคคล<br>นายศิริวุฒิ บุญ
+  </th>
+  <th colspan="2" class="section">
+    ที่ปรึกษาฝ่ายงบประมาณและบริหารทั่วไป<br>นายศิริวุฒิ บุญ
+  </th>
+</tr>
+<tr>
+  <th>การบริหารวิชาการ</th>
+  <th>การบริหารบุคคล</th>
+  <th>การบริหารงบประมาณ</th>
+  <th>การบริหารทั่วไป</th>
+</tr>
+<tr>
+<td>
+<ol>
+<li>พัฒนาหลักสูตร</li>
+<li>จัดการเรียนการสอน</li>
+<li>วัดและประเมินผล</li>
+<li>พัฒนาผู้เรียน</li>
+</ol>
+</td>
+<td>
+<ol>
+<li>วางแผนอัตรากำลัง</li>
+<li>สรรหาและแต่งตั้ง</li>
+<li>พัฒนาบุคลากร</li>
+<li>ประเมินผล</li>
+</ol>
+</td>
+<td>
+<ol>
+<li>จัดทำงบประมาณ</li>
+<li>บริหารการเงิน</li>
+<li>ควบคุมตรวจสอบ</li>
+<li>รายงานผล</li>
+</ol>
+</td>
+<td>
+<ol>
+<li>งานธุรการ</li>
+<li>อาคารสถานที่</li>
+<li>ความปลอดภัย</li>
+<li>ชุมชนสัมพันธ์</li>
+</ol>
+</td>
+</tr>
+</table>
+
+<!-- ===== BACK BUTTON ===== -->
+<a href="index.html" class="back-btn">
+⬅ กลับหน้าก่อนหน้า
+</a>
+
+</body>
+</html>

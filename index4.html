@@ -1,0 +1,448 @@
+<!doctype html> <!-- ประกาศเอกสาร HTML5 -->
+<html lang="th"> <!-- กำหนดภาษาไทย -->
+<head>
+<meta charset="utf-8" /> <!-- กำหนดการเข้ารหัสตัวอักษร UTF-8 -->
+<meta name="viewport" content="width=device-width,initial-scale=1" /> <!-- รองรับ responsive บนอุปกรณ์มือถือ -->
+<title>แนะนำสถานที่ในโรงเรียน</title> <!-- ชื่อแท็บเบราว์เซอร์ -->
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet"> <!-- โหลดฟอนต์ Kanit -->
+
+<style>
+/* 🔹 Root Variables */
+:root{
+  --bg:#1a1a1a; /* สีพื้นหลังเข้ม */
+  --card:#2a2a2a; /* สีพื้นของการ์ด */
+  --muted:#ccc; /* สีตัวอักษรรอง */
+  --accent1:#ff6600; /* สีส้มเข้ม ใช้สำหรับปุ่มและ hover */
+  --accent2:#ff9900; /* สีส้มอ่อน */
+  --radius:14px; /* ความโค้งของมุมการ์ด */
+}
+
+/* Box sizing ทุก element */
+*{box-sizing:border-box}
+
+/* 🔹 Body */
+body{
+  margin:0; /* ลบ margin เริ่มต้น */
+  font-family:"Kanit",system-ui,Arial; /* ฟอนต์หลัก */
+  background: linear-gradient(180deg,#000,#1a1a1a); /* พื้นหลังไล่สีดำลงเข้ม */
+  color:#fff; /* ตัวอักษรสีขาว */
+}
+
+/* 🔹 Header */
+header{
+  text-align:center; /* จัดกลางข้อความ */
+  padding:20px; /* ระยะด้านใน */
+  position:relative; /* ใช้ตำแหน่ง absolute สำหรับ logo และปุ่ม */
+  background: rgba(0,0,0,0.6); /* พื้นหลังโปร่งแสง */
+  backdrop-filter: blur(5px); /* ทำให้ background เบลอ */
+}
+
+.logo{ /* กล่องโลโก้ */
+  position:absolute; /* กำหนดตำแหน่งอิสระ */
+  left:30px; /* เว้นจากด้านซ้าย */
+  display:flex; /* จัดเรียงแนวนอน */
+  align-items:center; /* จัดกึ่งกลางแนวตั้ง */
+  gap:10px; /* ระยะห่างระหว่างรูปกับข้อความ */
+  color:gold; /* สีตัวอักษร */
+  font-weight:600; /* ตัวอักษรหนา */
+}
+
+/* รูปโลโก้ */
+.logo img{ /* รูปโลโก้ */
+  width:48px; /* ความกว้าง */
+  height:48px; /* ความสูง */
+  border-radius:50%; /* ทำให้รูปเป็นวงกลม */
+  border:2px solid gold; /* เส้นขอบสีทอง */
+  background:#fff; /* พื้นหลังสีขาว */
+}
+/* หัวข้อ H1 */
+header h1{ margin:6px 0;font-size:26px; } /* เว้น margin บน/ล่าง และกำหนดขนาดตัวอักษร */
+
+/* คำอธิบาย header */
+header p{ margin:0;color:var(--muted); } /* เว้น margin 0 และใช้สี muted */
+
+/* 🔹 ปุ่มกลับหน้าแรก */
+.home-btn{
+  position:absolute; /* วางแบบอิสระ */
+  top:15px; /* ระยะบน */
+  right:15px; /* ระยะขวา */
+  padding:8px 14px; /* ระยะด้านใน */
+  background:linear-gradient(90deg,var(--accent1),var(--accent2)); /* ไล่สีส้ม */
+  color:#fff; /* สีตัวอักษรขาว */
+  text-decoration:none; /* ไม่มีเส้นใต้ */
+  font-weight:600; /* ตัวหนา */
+  border-radius:25px; /* มุมโค้ง */
+  transition:transform 0.2s; /* เอฟเฟกต์เมื่อ hover */
+}
+
+/* เอฟเฟกต์ hover ของปุ่ม */
+.home-btn:hover{
+  transform:scale(1.05); /* ขยายเล็กน้อย */
+}
+
+/* 🔹 Nav Bar */
+nav{
+  display:flex; /* ใช้ flexbox */
+  justify-content:center; /* จัดกลางแนวนอน */
+  background: rgba(0,0,0,0.8); /* พื้นหลังโปร่ง */
+  backdrop-filter: blur(6px); /* เบลอพื้นหลัง */
+  box-shadow:0 3px 10px rgba(0,0,0,0.5); /* เงา navbar */
+}
+
+/* เมนูหลัก */
+nav ul.menu{
+  list-style:none; /* เอา bullet ออก */
+  display:flex; /* แนวนอน */
+  gap:30px; /* ช่องว่างระหว่างเมนู */
+  padding:0 20px; /* padding ซ้ายขวา */
+}
+
+/* Menu item */
+nav ul.menu>li{ position:relative; } /* สำหรับ submenu */
+
+/* Link menu */
+nav ul.menu>li>a{
+  text-decoration:none; /* ไม่มีเส้นใต้ */
+  color:#fff; /* ตัวอักษรขาว */
+  font-weight:500; /* ตัวหนาปานกลาง */
+  padding:12px 10px; /* ระยะบน/ล่างและซ้าย/ขวา */
+  display:block; /* block เพื่อให้คลิกเต็มพื้นที่ */
+  position:relative; /* สำหรับ ::after */
+}
+
+/* เส้นใต้ hover effect */
+nav ul.menu>li>a::after{
+  content:''; 
+  position:absolute; 
+  left:0; 
+  bottom:5px;
+  width:0%; /* เริ่มจาก 0 */
+  height:3px; 
+  background:linear-gradient(90deg,var(--accent1),var(--accent2)); /* ไล่สีส้ม */
+  transition:width 0.3s; /* แอนิเมชันขยายเส้น */
+}
+
+/* ขยายเส้นเมื่อ hover */
+nav ul.menu>li:hover>a::after{ width:100%; }
+
+/* เปลี่ยนสีตัวอักษรเมื่อ hover */
+nav ul.menu>li:hover>a{ color:var(--accent1); }
+
+/* 🔹 Submenu */
+.submenu{
+  position:absolute; /* วางแบบอิสระ */
+  top:100%; left:0; /* อยู่ใต้เมนูหลัก */
+  min-width:180px; /* ความกว้างขั้นต่ำ */
+  background: rgba(0,0,0,0.95); /* พื้นหลังเข้ม */
+  border-radius:10px; /* มุมโค้ง */
+  opacity:0; /* ซ่อนตอนเริ่มต้น */
+  visibility:hidden; /* ซ่อน */
+  transform: translateY(10px); /* เลื่อนลงเล็กน้อย */
+  transition: all 0.3s ease; /* แอนิเมชันทั้งหมด */
+}
+
+/* Submenu link */
+.submenu a{
+  display:block; /* block ให้คลิกเต็ม */
+  padding:10px 15px; /* ระยะด้านใน */
+  text-decoration:none; /* ไม่มีเส้นใต้ */
+  color:#ccc; /* ตัวอักษรสีอ่อน */
+  transition: "background" 0.3s,color 0.3s; /* แอนิเมชัน hover */
+}
+
+/* Hover submenu */
+.submenu a:hover{
+  background:var(--accent1); /* พื้นหลังส้มเข้ม */
+  color:#000; /* ตัวอักษรดำ */
+}
+
+/* แสดง submenu เมื่อ hover menu item */
+nav ul.menu>li:hover .submenu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+/* 🔹 Gallery */
+.gallery{
+  max-width:1100px; /* ความกว้างสูงสุด */
+  margin:22px auto; /* เว้นบน/ล่าง และจัดกลาง */
+  padding:18px; /* padding รอบ gallery */
+  display:grid; /* ใช้ grid layout */
+  gap:18px; /* ช่องว่างระหว่าง card */
+  grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); /* จำนวน column อัตโนมัติ */
+}
+
+/* Card ของรูป */
+.card{
+  background:var(--card); /* พื้นหลังเข้ม */
+  border-radius:var(--radius); /* มุมโค้ง */
+  overflow:hidden; /* ตัดเกิน */
+  box-shadow:0 6px 20px rgba(0,0,0,0.5); /* เงา */
+  transition:.25s; /* แอนิเมชัน hover */
+  cursor:pointer; /* เคอร์เซอร์ pointer */
+}
+
+/* Card hover effect */
+.card:hover{ transform:translateY(-6px); }
+
+/* Thumbnail */
+.thumb{
+  aspect-ratio:16/10; /* อัตราส่วน */
+  overflow:hidden;
+}
+
+/* รูปใน thumb */
+.thumb img{
+  width:100%;height:100%;object-fit:cover; /* ครอบเต็ม */
+  transition:.35s; /* แอนิเมชัน zoom */
+}
+
+/* Zoom เมื่อ hover */
+.card:hover img{ transform:scale(1.05); }
+
+/* Meta ข้อมูลการ์ด */
+.meta{ padding:14px; }
+.meta h3{ margin:0;font-size:17px; } /* ชื่อสถานที่ */
+.meta p{ margin:4px 0;color:var(--muted);font-size:14px; } /* คำอธิบายย่อ */
+.view-btn{
+  margin-top:10px;
+  display:inline-block;
+  padding:8px 14px;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2)); /* ไล่สีส้ม */
+  color:#fff;
+  border-radius:25px;
+  font-weight:600;
+  text-decoration:none;
+}
+
+/* 🔹 LIGHTBOX */
+#lightbox{
+  position:fixed; /* ติดหน้าจอ */
+  inset:0; /* ครอบเต็มจอ */
+  display:none; /* ซ่อนตอนเริ่มต้น */
+  align-items:center; /* จัดกลางแนวตั้ง */
+  justify-content:center; /* จัดกลางแนวนอน */
+  background:rgba(0,0,0,0.85); /* พื้นหลังโปร่งดำ */
+  z-index:2000; /* อยู่ด้านบน */
+  padding:20px;
+}
+
+/* เปิด lightbox */
+#lightbox.open{ display:flex; }
+
+/* กล่องแสดงภาพ */
+.lb-box{
+  background:#2a2a2a;
+  border-radius:12px;
+  max-width:900px;
+  width:100%;
+  overflow:hidden;
+}
+
+/* ภาพใน lightbox */
+.lb-img img{
+  width:100%;
+  display:block;
+  max-height:70vh; /* สูงไม่เกิน 70% ของหน้าจอ */
+  object-fit:cover;
+}
+
+/* ข้อความใต้ภาพ */
+.lb-text{
+  padding:18px;
+}
+.lb-text h2{ margin:0;font-size:20px;color:var(--accent1);} /* ชื่อสถานที่ */
+.lb-text p{ margin:8px 0;color:#ccc;line-height:1.5; } /* คำอธิบายเต็ม */
+
+/* ปุ่ม lightbox */
+.lb-buttons{
+  margin-top:12px;
+  display:flex;
+  justify-content:space-between; /* จัดซ้าย-ขวา */
+}
+.lb-btn{
+  padding:8px 12px;
+  background:var(--accent1);
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔹 Header -->
+<header>
+  <div class="logo"> 
+    <img src="pic/logo.png" alt="โลโก้"> 
+    โรงเรียนบ้านหนองผักหนอก 
+  </div>
+  <h1>แนะนำสถานที่สำคัญในโรงเรียน</h1> <!-- หัวข้อหลัก -->
+  <p>แตะที่รูปเพื่อดูข้อมูลและภาพเต็ม</p> <!-- คำอธิบาย -->
+  <a href="index.html" class="home-btn">🏠 หน้าแรก</a> <!-- ปุ่มกลับหน้าแรก -->
+</header>
+
+<!-- 🔹 Nav Bar -->
+<nav>
+  <ul class="menu">
+    <li>
+      <a href="#">หน้าแรก ▾</a>
+      <div class="submenu">
+        <a href="index2.html">ประวัติโรงเรียน</a>
+        <a href="index3.html">วิสัยทัศน์ / สีประจำโรงเรียน</a>
+        <a href="index4.html">ผังโรงเรียน / อาคาร</a>
+        <a href="index5.html">เพลงมาร์ชประจำโรงเรียน</a>
+        <a href="index6.html">ผังองค์กร</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">บุคลากร ▾</a>
+      <div class="submenu">
+        <a href="index8.html">ฝ่ายบริหาร</a>
+        <a href="index9.html">ครูผู้สอน</a>
+        <a href="index10.html">เจ้าหน้าที่</a>
+      </div>
+    </li>
+
+        <li>
+      <a href="#">ข้อมูลนักเรียน ▾</a>
+      <div class="submenu">
+        <a href="index11.html">อนุบาล</a>
+        <a href="index12.html">ประถม</a>
+        <a href="index13.html">มัธยม</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">ผลงานความภาคภูมิใจ ▾</a>
+      <div class="submenu">
+        <a href="index14.html">ผลงานนักเรียน</a>
+        <a href="#">ผลงานครู</a>
+        <a href="#">รางวัล</a>
+      </div>
+    </li>
+    <li>
+      <a href="#"> Dowload ▾</a>
+      <div class="submenu">
+        <a href="index14.html">ตารางเรียน</a>
+        <a href="">ตราโรงเรียนบ้านหนองผักหนอก</a>
+      </div>
+    </li>
+    <li><a href="#">ติดต่อ</a></li>
+  </ul>
+
+  
+</nav>
+
+<!-- 🔹 Gallery -->
+<main class="gallery" id="gallery">
+  <article class="card" 
+    data-title="อาคารเฉลิมพระเกียรติ" 
+    data-desc="อาคารเรียน 3 ชั้น มีห้องสมุด ห้องคอมพิวเตอร์ และห้องปฏิบัติการวิทยาศาสตร์" 
+    data-full="pic/88.jpg">
+    <div class="thumb"><img src="" alt=""></div>
+    <div class="meta">
+      <h3>อาคารเฉลิมพระเกียรติ</h3>
+      <p>อาคารเรียน 3 ชั้น พร้อมห้องปฏิบัติการครบ</p>
+      <a class="view-btn">ดูภาพ</a>
+    </div>
+  </article>
+
+  <article class="card"
+    data-title="สนามกีฬาโรงเรียน"
+    data-desc="ลู่วิ่ง สนามฟุตบอล และลานกิจกรรมกลางแจ้ง"
+    data-full="pic/field.jpg">
+    <div class="thumb"><img src="" alt=""></div>
+    <div class="meta">
+      <h3>สนามกีฬาโรงเรียน</h3>
+      <p>ลานกิจกรรมกว้าง ใช้จัดงานกีฬาและออกกำลังกาย</p>
+      <a class="view-btn">ดูภาพ</a>
+    </div>
+  </article>
+
+  <article class="card"
+    data-title="หอประชุม"
+    data-desc="หอประชุมใหญ่ความจุ 600 ที่นั่ง ใช้จัดงานสำคัญ"
+    data-full="pic/auditorium.jpg">
+    <div class="thumb"><img src="pic/aud-thumb.jpg" alt=""></div>
+    <div class="meta">
+      <h3>หอประชุมโรงเรียน</h3>
+      <p>ใช้จัดพิธีการ งานวิชาการ และกิจกรรมโรงเรียน</p>
+      <a class="view-btn">ดูภาพ</a>
+    </div>
+  </article>
+</main>
+
+<!-- 🔹 LIGHTBOX -->
+<div id="lightbox">
+  <div class="lb-box">
+    <div class="lb-img">
+      <img id="lb-img" src="">
+    </div>
+    <div class="lb-text">
+      <h2 id="lb-title"></h2>
+      <p id="lb-desc"></p>
+      <div class="lb-buttons">
+        <button class="lb-btn" id="prev">◀ ก่อนหน้า</button>
+        <button class="lb-btn" id="close">ปิด</button>
+        <button class="lb-btn" id="next">ถัดไป ▶</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<script>
+// เลือก card ทั้งหมด
+const cards = [...document.querySelectorAll(".card")];
+
+// เลือก lightbox และองค์ประกอบภายใน
+const lb = document.getElementById("lightbox");
+const lbImg = document.getElementById("lb-img");
+const lbTitle = document.getElementById("lb-title");
+const lbDesc = document.getElementById("lb-desc");
+let index = 0; // เก็บ index ปัจจุบัน
+
+// ฟังก์ชันเปิด lightbox
+function openLB(i){
+  index = i;
+  const c = cards[i]; // เลือก card ปัจจุบัน
+  lbImg.src = c.dataset.full; // โหลดภาพเต็ม
+  lbTitle.textContent = c.dataset.title; // โหลดชื่อ
+  lbDesc.textContent = c.dataset.desc; // โหลดคำอธิบาย
+  lb.classList.add("open"); // แสดง lightbox
+}
+
+// เพิ่ม event ให้ card และปุ่ม view
+cards.forEach((card,i)=>{
+  card.addEventListener("click",()=>openLB(i));
+  card.querySelector(".view-btn").addEventListener("click",e=>{
+    e.stopPropagation(); // ป้องกัน event bubble
+    openLB(i);
+  });
+});
+
+// ปุ่มปิดและเลื่อนภาพ
+document.getElementById("close").onclick = ()=>lb.classList.remove("open"); // ปิด lightbox
+document.getElementById("next").onclick = ()=>{
+  index = (index+1) % cards.length; // ถัดไป
+  openLB(index);
+};
+document.getElementById("prev").onclick = ()=>{
+  index = (index-1+cards.length) % cards.length; // ก่อนหน้า
+  openLB(index);
+};
+
+// คลิกบริเวณว่างปิด lightbox
+lb.addEventListener("click",e=>{
+  if(e.target===lb) lb.classList.remove("open");
+});
+</script>
+
+</body>
+</html>
